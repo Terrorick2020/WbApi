@@ -1,37 +1,32 @@
+version: '3.8'
+
 services:
-  db:
-    image: postgres:latest
-    restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=magic
-    networks:
-      - planner_network
-    ports:
-      - "5432:5432"
-    
-  server:
-    build: ./server
-    environment:
-      - HOST=0.0.0.0
-    depends_on:
-      - db
-    networks:
-      - planner_network
+  wb-api:
+    build: .
     ports:
       - "3000:3000"
-
-  proxy:
-    build: ./nginx
+    volumes:
+      - .:/app
     depends_on:
-      - server
-    networks:
-      - planner_network
+      db:
+        condition: service_healthy
+    restart: always
+    env_file:
+      - .env
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./db_data:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
     ports:
-      - "80:80"
+      - 5432:5432
+    healthcheck:
+      test: ['CMD', 'pg_isready', '-U', '${DB_USER}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
-networks:
-  planner_network:
-    driver: bridge
-    
