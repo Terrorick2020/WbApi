@@ -5,8 +5,13 @@
       "strict": true,
       "esModuleInterop": true,
       "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true
+      "forceConsistentCasingInFileNames": true,
+      "moduleResolution": "node",
+      "outDir": "./dist"
     },
-    "include": ["src/**/*.ts"],
+    "include": [
+      "src/**/*.ts",
+      "knexfile.ts"
+    ],
     "exclude": ["node_modules"]
 }
