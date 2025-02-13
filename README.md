@@ -24,18 +24,23 @@
 
 ---
 
+
 ## ▶️ Запуск сервиса
 
 ### 1️⃣ Клонирование репозитория
-    - git clone https://github.com/Terrorick2020/WbApi.git
+    git clone https://github.com/Terrorick2020/WbApi.git
+
 
 ### 2️⃣ Переход в дирректорию проекта
 
+#### Для Linux:
+    cd wb-data-updater
 #### Для Windows:
-    - Для Linux: cd wb-data-updater
-    - Для Windows: dir wb-data-updater
+    dir wb-data-updater
+
 
 ### 3️⃣ Запуск контейнера
-    - docker-compose up -d --build
+    docker-compose up -d --build
+
 
 ✅ **Сервис начал работу**
