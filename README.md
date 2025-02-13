@@ -27,7 +27,7 @@
 ## ▶️ Запуск сервиса
 
 ### 1️⃣ Клонирование репозитория
-    - git clone https://github.com/your-repo/wb-data-updater.git
+    - git clone https://github.com/Terrorick2020/WbApi.git
 
 ### 2️⃣ Переход в дирректорию проекта
     - Для Linux: cd wb-data-updater
