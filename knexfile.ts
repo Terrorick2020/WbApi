@@ -7,6 +7,11 @@ import {
 	DB_PORT
 } from './src/config/config.main'
 
+/**
+ * Конфигурация базы данных для Knex.
+ * 
+ * Определяет параметры подключения к PostgreSQL и настройки миграций.
+ */
 const config: { [key: string]: Knex.Config } = {
 	development: {
 		client: 'pg',
