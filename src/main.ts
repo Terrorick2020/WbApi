@@ -11,12 +11,10 @@ import cron from 'node-cron'
  * 	2. запускает крон-задачу, которая обновляет тарифы каждый час.
  * 	3. в случае ошибки выводит сообщение в консоль.
  * 	4. в конце освобождает ресурсы, закрывая соединение с базой данных.
- * 
- * @async
- * @function main
+ *
  * @returns {Promise<void>}
  */
-async function main() {
+export async function main() {
 	try {
 		await fetchAndStoreTariffs(knex)
 		console.log('Тарифы успешно обновлены!')
@@ -37,4 +35,10 @@ async function main() {
 	}
 }
 
+/**
+ * Вызов функции запуска сервиса.
+ * 
+ * @function main
+ * @returns {Promise<void>}
+ */
 main()

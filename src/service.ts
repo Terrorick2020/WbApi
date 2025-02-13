@@ -56,9 +56,7 @@ interface Tariff {
  * - Извлекает данные тарифов из ответа API.
  * - Для каждого склада создаёт объект тарифа и сохраняет его в БД.
  * - Обновляет запись, если тариф уже существует.
- * 
- * @async
- * @function fetchAndStoreTariffs
+ *
  * @param {Knex} knex - Объект Knex для работы с базой данных.
  * @returns {Promise<void>} Промис без возвращаемого значения.
  */
@@ -101,7 +99,6 @@ export async function fetchAndStoreTariffs(knex: Knex): Promise<void> {
  * - Конвертирует даты в корректный ISO-формат.
  * - Вставляет запись в таблицу или обновляет её при конфликте.
  * 
- * @async
  * @function upsertTariff
  * @param {Knex} knex - Объект Knex для работы с базой данных.
  * @param {Tariff} data - Объект с данными тарифа.

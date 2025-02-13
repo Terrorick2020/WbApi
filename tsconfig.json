@@ -7,7 +7,14 @@
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
       "moduleResolution": "node",
-      "outDir": "./dist"
+      "outDir": "./dist",
+    },
+    "typedocOptions": {
+      "entryPoints": [
+        "src/*.ts",
+        "src/**/*ts"
+      ],
+      "out": "./docs"
     },
     "include": [
       "src/**/*.ts",

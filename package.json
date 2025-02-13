@@ -5,6 +5,7 @@
   "type": "commonjs",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --exit-child src/main.ts",
+    "docs": "typedoc",
     "start": "ts-node ./src/main.ts"
   },
   "keywords": [],
@@ -12,13 +13,20 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@babel/core": "^7.26.8",
+    "@babel/preset-typescript": "^7.26.0",
     "@types/express": "^5.0.0",
     "@types/knex": "^0.15.2",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.13.1",
+    "better-docs": "^2.7.3",
+    "docdash": "^2.0.2",
     "express": "^4.21.2",
     "jsdoc": "^4.0.4",
+    "jsdoc-babel": "^0.5.0",
+    "jsdoc-to-markdown": "^9.1.1",
     "ts-node": "^10.9.2",
+    "typedoc": "^0.27.7",
     "typescript": "^5.7.3"
   },
   "dependencies": {
