@@ -34,13 +34,14 @@
 ### 2️⃣ Переход в дирректорию проекта
 
 #### Для Linux:
-    cd wb-data-updater
+    cd WbApi
 #### Для Windows:
-    dir wb-data-updater
+    dir WbApi
 
 
 ### 3️⃣ Запуск контейнера
     docker-compose up -d --build
 
+---
 
 ✅ **Сервис начал работу**
