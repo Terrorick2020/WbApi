@@ -34,9 +34,9 @@
 ### 2️⃣ Переход в дирректорию проекта
 
 #### Для Linux:
-    cd WbApi
+    cd ./WbApi/
 #### Для Windows:
-    dir WbApi
+    dir ./WbApi/
 
 
 ### 3️⃣ Запуск контейнера
