@@ -4,7 +4,6 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only --exit-child src/main.ts",
     "start": "ts-node ./src/main.ts"
   },
   "keywords": [],
@@ -27,6 +26,7 @@
     "body-parser": "^1.20.3",
     "dotenv": "^16.4.7",
     "express-async-handler": "^1.2.0",
+    "googleapis": "^144.0.0",
     "helmet": "^8.0.0",
     "knex": "^3.1.0",
     "morgan": "^1.10.0",

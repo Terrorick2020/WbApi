@@ -15,4 +15,5 @@ export const DB_PASSWORD: string = String( process.env.DB_PASSWORD ) || 'p0o9i8u
 export const DB_NAME: string = String( process.env.DB_NAME ) || 'wildberries_db'
 export const DB_PORT: number = Number( process.env.DB_PORT ) || 5432
 export const API_KEY: string = String( process.env.API_KEY ) || 'your_key'
+export const GOOGLE_API_KEY: string = String( process.env.GOOGLE_API_KEY ) || 'your_key'
 export const API_URL: string = String( process.env.API_URL ) || 'https://common-api.wildberries.ru/api/v1/tariffs/box'
