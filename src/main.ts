@@ -16,8 +16,6 @@ import {N} from './config/config.main'
  *
  * @returns {Promise<void>}
  */
-
-
 export async function main() {
 	try {
 		// Очистка таблицы Google Sheets в БД

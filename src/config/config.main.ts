@@ -9,6 +9,10 @@ dotenv.config({ path: '.env' })
  */
 export const PORT: number = Number(process.env.PORT) ?? 3000
 
+/**
+ * Количество создаваемых Google-таблиц.
+ * Берётся из переменной окружения `N`, либо по умолчанию `3`.
+ */
 export const N: number = Number(process.env.N) ?? 3
 
 /**

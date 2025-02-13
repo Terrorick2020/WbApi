@@ -1,8 +1,14 @@
 import { google } from 'googleapis'
 import { readFileSync } from 'fs'
 
-const credentials = JSON.parse(readFileSync('./src/service_cred.json', 'utf8'))
+/**
+ * Загружает учетные данные сервисного аккаунта из файла.
+ */
+export const credentials = JSON.parse(readFileSync('./src/service_cred.json', 'utf8'))
 
+/**
+ * Создает экземпляр аутентификации с использованием сервисного аккаунта.
+ */
 const auth = new google.auth.JWT(
 	credentials.client_email,
 	undefined,

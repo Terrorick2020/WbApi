@@ -5,6 +5,12 @@ import knex from './db/database'
 const sheets = google.sheets({ version: 'v4', auth })
 const drive = google.drive({ version: 'v3', auth })
 
+/**
+ * Создает указанное количество новых Google-таблиц и предоставляет к ним доступ по ссылке.
+ *
+ * @param {number} count - Количество создаваемых таблиц.
+ * @returns {Promise<string[]>} Промис, который возвращает массив идентификаторов созданных таблиц.
+ */
 export async function createGoogleSheets(count: number): Promise<string[]> {
 	const spreadsheetIds: string[] = []
 
@@ -37,17 +43,32 @@ export async function createGoogleSheets(count: number): Promise<string[]> {
 	return spreadsheetIds
 }
 
+/**
+ * Получает список идентификаторов Google-таблиц, сохраненных в базе данных.
+ *
+ * @returns {Promise<string[]>} Промис, возвращающий массив идентификаторов Google-таблиц.
+ */
 async function fetchGoogleSheetIds(): Promise<string[]> {
 	const sheetRecords = await knex('google_sheets').select('spreadsheet_id')
 	return sheetRecords.map(record => record.spreadsheet_id)
 }
 
+/**
+ * Извлекает данные из таблицы `warehouse_tariffs` в базе данных.
+ *
+ * @returns {Promise<Object[]>} Промис, который возвращает массив объектов с данными.
+ */
 async function fetchDataFromDB() {
 	return knex('warehouse_tariffs')
 		.select('*')
 		.orderBy('box_delivery_and_storage_expr', 'asc')
 }
 
+/**
+ * Экспортирует данные из БД в Google-таблицы, обновляя их содержимое.
+ *
+ * @returns {Promise<void>} Промис, выполняемый после завершения экспорта.
+ */
 export async function exportDataToSheets() {
 	try {
 		const spreadsheetIds = await fetchGoogleSheetIds()
