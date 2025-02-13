@@ -37,7 +37,7 @@
     dir ./WbApi/
 
 ### 3️⃣ Запуск контейнера
-    docker-compose up -d --build
+    docker-compose up --build
 
 ---
 
