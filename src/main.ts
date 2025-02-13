@@ -3,7 +3,19 @@ import { createGoogleSheets, exportDataToSheets } from './googleSheetsService'
 import knex from './db/database'
 import cron from 'node-cron'
 
-async function main() {
+/**
+ * Основная функция, выполняющая первоначальное обновление тарифов
+ * и настраивающая крон-задачу для их периодического обновления.
+ * 
+ * Этапы выполнения функции:
+ * 	1. выполняет обновление тарифов, вызывая `fetchAndStoreTariffs(knex)`.
+ * 	2. запускает крон-задачу, которая обновляет тарифы каждый час.
+ * 	3. в случае ошибки выводит сообщение в консоль.
+ * 	4. в конце освобождает ресурсы, закрывая соединение с базой данных.
+ *
+ * @returns {Promise<void>}
+ */
+export async function main() {
 	try {
 		// Очистка таблицы Google Sheets в БД
 		await knex('google_sheets').del()
@@ -45,4 +57,10 @@ async function main() {
 	}
 }
 
+/**
+ * Вызов функции запуска сервиса.
+ * 
+ * @function main
+ * @returns {Promise<void>}
+ */
 main()

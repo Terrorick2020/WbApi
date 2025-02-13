@@ -3,6 +3,9 @@ import { Knex } from 'knex'
 
 import {API_KEY, API_URL} from './config/config.main'
 
+/**
+ * Интерфейс, описывающий структуру склада с тарифами.
+ */
 interface Warehouse {
 	boxDeliveryAndStorageExpr: string
 	boxDeliveryBase: string
@@ -12,18 +15,28 @@ interface Warehouse {
 	warehouseName: string
 }
 
+/**
+ * Интерфейс, описывающий структуру данных тарифов.
+ */
 interface TariffData {
 	dtNextBox: string
 	dtTillMax: string
 	warehouseList: Warehouse[]
 }
 
+/**
+ * Интерфейс ответа API, содержащего данные тарифов.
+ */
 interface ApiResponse {
 	response: {
 		data: TariffData
 	}
 }
 
+
+/**
+ * Интерфейс, описывающий структуру тарифа для хранения в базе данных.
+ */
 interface Tariff {
 	warehouse_name: string
 	date: string
@@ -36,6 +49,17 @@ interface Tariff {
 	dt_till_max: string
 }
 
+/**
+ * Функция для получения тарифов с API и их сохранения в базе данных.
+ * 
+ * - Отправляет запрос на API с текущей датой.
+ * - Извлекает данные тарифов из ответа API.
+ * - Для каждого склада создаёт объект тарифа и сохраняет его в БД.
+ * - Обновляет запись, если тариф уже существует.
+ *
+ * @param {Knex} knex - Объект Knex для работы с базой данных.
+ * @returns {Promise<void>} Промис без возвращаемого значения.
+ */
 export async function fetchAndStoreTariffs(knex: Knex): Promise<void> {
 	const today = new Date().toISOString().split('T')[0] 
 
@@ -68,6 +92,18 @@ export async function fetchAndStoreTariffs(knex: Knex): Promise<void> {
 	}
 }
 
+/**
+ * Функция для вставки или обновления тарифов в базе данных.
+ * 
+ * - Преобразует строки в числа для полей стоимости.
+ * - Конвертирует даты в корректный ISO-формат.
+ * - Вставляет запись в таблицу или обновляет её при конфликте.
+ * 
+ * @function upsertTariff
+ * @param {Knex} knex - Объект Knex для работы с базой данных.
+ * @param {Tariff} data - Объект с данными тарифа.
+ * @returns {Promise<void>} Промис без возвращаемого значения.
+ */
 async function upsertTariff(knex: Knex, data: any) {
   const {
     warehouse_name,
@@ -81,6 +117,11 @@ async function upsertTariff(knex: Knex, data: any) {
     dt_till_max,
   } = data;
 
+  /**
+   * Функция для преобразования строкового значения в число.
+   * @param {string} value - Строка, представляющая число.
+   * @returns {number} Числовое значение.
+   */
   const convertToFloat = (value: string): number => {
     return parseFloat(value.replace(',', '.'));
   };
@@ -90,6 +131,11 @@ async function upsertTariff(knex: Knex, data: any) {
   const boxDeliveryLiter = convertToFloat(box_delivery_liter);
   const boxStorageLiter = convertToFloat(box_storage_liter);
 
+  /**
+	* Функция для преобразования строки с датой в ISO-формат.
+	* @param {string} dateString - Строковое представление даты.
+	* @returns {string | null} Корректный ISO-формат даты или null, если некорректно.
+	*/
   const parseDate = (dateString: string): string | null => {
     const parsedDate = new Date(dateString);
     return parsedDate.toString() !== 'Invalid Date' ? parsedDate.toISOString() : null;
