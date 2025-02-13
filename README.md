@@ -30,7 +30,8 @@
     - git clone https://github.com/Terrorick2020/WbApi.git
 
 ### 2️⃣ Переход в дирректорию проекта
-    #### Для Windows:
+
+#### Для Windows:
     - Для Linux: cd wb-data-updater
     - Для Windows: dir wb-data-updater
 
