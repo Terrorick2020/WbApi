@@ -2,6 +2,7 @@ import { fetchAndStoreTariffs } from './service'
 import { createGoogleSheets, exportDataToSheets } from './googleSheetsService'
 import knex from './db/database'
 import cron from 'node-cron'
+import {N} from './config/config.main'
 
 /**
  * Основная функция, выполняющая первоначальное обновление тарифов
@@ -15,6 +16,8 @@ import cron from 'node-cron'
  *
  * @returns {Promise<void>}
  */
+
+
 export async function main() {
 	try {
 		// Очистка таблицы Google Sheets в БД
@@ -22,7 +25,7 @@ export async function main() {
 		console.log('Таблица google_sheets очищена.')
 
 		// Создание новых Google-таблиц
-		const sheetIds = await createGoogleSheets(3)
+		const sheetIds = await createGoogleSheets(N)
 		await knex('google_sheets').insert(
 			sheetIds.map(id => ({ spreadsheet_id: id }))
 		)

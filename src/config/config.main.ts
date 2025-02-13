@@ -9,6 +9,8 @@ dotenv.config({ path: '.env' })
  */
 export const PORT: number = Number(process.env.PORT) ?? 3000
 
+export const N: number = Number(process.env.N) ?? 3
+
 /**
  * Хост сервера.
  * Берётся из переменной окружения `HOST`, либо по умолчанию `'localhost'`.
